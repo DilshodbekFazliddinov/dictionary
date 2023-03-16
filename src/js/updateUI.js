@@ -3,6 +3,7 @@ const noun = document.querySelector(".noun");
 const verb = document.querySelector(".verb");
 const nounList = document.querySelector(".nounList");
 const verbList = document.querySelector(".verbList");
+const synonim = document.querySelector(".synonim");
 
 export const createWrapper = (wraps) => {
   wraps.forEach((wrap) => {
@@ -22,6 +23,7 @@ export const createWrapper = (wraps) => {
     const verbb = Object.values(meanings[1])[0];
     const definitionNoun = Object.values(meanings[0])[1];
     const definitionVerb = Object.values(meanings[1])[1];
+    const synonims = Object.values(meanings[0].synonyms);
 
     wrapperSite.innerHTML = `
     <div>
@@ -55,6 +57,7 @@ export const createWrapper = (wraps) => {
             </svg>
           </div>
     `;
+    synonim.textContent = `${synonims}`;
 
     if (nounn || verbb) {
       nounFunction();
@@ -74,8 +77,12 @@ export const createWrapper = (wraps) => {
         nounList.innerHTML += `
               <li class="list-disc marker:text-purple-600 p-1 ml-16 dark:text-white">${item.definition}</li>
         `;
+        synonim.textContent += `
+        
+        `;
       });
     }
+
     function verbFunction() {
       definitionVerb.forEach((item) => {
         verbList.innerHTML += `

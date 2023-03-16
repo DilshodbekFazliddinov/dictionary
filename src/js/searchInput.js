@@ -1,6 +1,7 @@
 const input = document.getElementById("default-search");
 const formEl = document.getElementById("form");
 const result = document.querySelector(".result");
+const errorCard = document.querySelector(".errorCard");
 const errorMessage = document.querySelector(".errMessage");
 const wrapperSite = document.querySelector(".wrapperSite");
 import request from "./request";
@@ -25,22 +26,12 @@ formEl.addEventListener("submit", (e) => {
     request(filtrApi)
       .then((data) => {
         createWrapper(data);
-        result.innerHTML = `
-        <div class="noun">
-            <h1 class="font-bold text-2xl mb-10 dark:text-white">noun</h1>
-            <p class="text-[#757575] mb-6">Meaning</p>
-            <ul class="nounList"></ul>
-          </div>
-          <div class="verb">
-            <h1 class="font-bold text-2xl mb-10 dark:text-white">verb</h1>
-            <p class="text-[#757575] mb-6">Meaning</p>
-            <ul class="verbList"></ul>
-          </div>
-        `;
+        result.classList.remove("hidden");
+        errorCard.innerHTML = "";
       })
       .catch((err) => {
         wrapperSite.innerHTML = "";
-        result.innerHTML = `
+        errorCard.innerHTML = `
         <div class="m-w-[46rem] m-auto text-center">
         <p class="text-6xl mb-11">😟</p>
         <h1 class="font-bold mb-6 dark:text-white">No Definitions Found</h1>
@@ -51,6 +42,7 @@ formEl.addEventListener("submit", (e) => {
         </p>
       </div>
         `;
+        result.classList.add("hidden");
       });
   }
   input.value = "";

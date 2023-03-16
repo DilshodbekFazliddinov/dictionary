@@ -4,7 +4,7 @@ import "./changeFont";
 import "./searchInput";
 import request from "./request";
 
-const API = `https://api.dictionaryapi.dev/api/v2/entries/en/donkey`;
+const API = `https://api.dictionaryapi.dev/api/v2/entries/en/hello`;
 
 request(API)
   .then((data) => {
